@@ -1,0 +1,3 @@
+[submodule "submodules/serve"]
+	path = submodules/serve
+	url = https://github.com/pytorch/serve
