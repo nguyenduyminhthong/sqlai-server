@@ -1,15 +1,28 @@
 from fastapi import APIRouter, Response, status
 from loguru import logger
+from pydantic import BaseModel
 
 from client import *
-from interface import TrainingMessagePackage
 
 
 router = APIRouter()
 
 
+class TrainingModelRequest(BaseModel):
+    host: str
+    sql: str | None = None
+    question: str | None = None
+    ddl: str | None = None
+    doc: str | None = None
+
+
+class TrainingModelMessage(BaseModel):
+    host: str
+    package: TrainingModelRequest
+
+
 @router.post("/train_model")
-def train_model(request: TrainingMessagePackage) -> Response:
+def train_model(request: TrainingModelMessage) -> Response:
     logger.info(f"Training model with request: {request}")
 
     try:
