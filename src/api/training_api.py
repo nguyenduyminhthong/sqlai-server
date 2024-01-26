@@ -2,7 +2,7 @@ from fastapi import APIRouter, Response, status
 from loguru import logger
 from pydantic import BaseModel
 
-from client import *
+from ..client import *
 
 
 router = APIRouter()
