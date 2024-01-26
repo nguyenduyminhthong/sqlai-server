@@ -1,0 +1,13 @@
+version: "3.9"
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: sqlai-server
+    ports:
+      - "8000:8000"
+    command: uvicorn src.main:app --host 0.0.0.0
+    restart: unless-stopped
+    network_mode: bridge
