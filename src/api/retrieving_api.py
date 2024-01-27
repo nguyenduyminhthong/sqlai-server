@@ -10,13 +10,13 @@ router = APIRouter()
 
 
 class RetrievingQueryRequest(BaseModel):
-    host: str
+    vector_db_host: str
     key: str
     question: str
 
 
 class RetrievingQueryMessage(BaseModel):
-    host: str
+    consumer_host: str
     package: RetrievingQueryRequest
 
 
@@ -29,7 +29,7 @@ def get_results(request: RetrievingQueryMessage) -> RetrievingQueryResponse:
     logger.info(f"Retrieving query with request: {request}")
 
     try:
-        response = requests.post(f"{request.host}/retreive_query", data=request.package.model_dump_json())
+        response = requests.post(f"{request.consumer_host}/retreive_query", data=request.package.model_dump_json())
         response.raise_for_status()
 
         return RetrievingQueryResponse(sql=response.json()["sql"])

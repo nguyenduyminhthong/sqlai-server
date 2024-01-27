@@ -9,7 +9,7 @@ router = APIRouter()
 
 
 class TrainingModelRequest(BaseModel):
-    host: str
+    vector_db_host: str
     sql: str | None = None
     question: str | None = None
     ddl: str | None = None
@@ -17,7 +17,7 @@ class TrainingModelRequest(BaseModel):
 
 
 class TrainingModelMessage(BaseModel):
-    host: str
+    consumer_host: str
     package: TrainingModelRequest
 
 
