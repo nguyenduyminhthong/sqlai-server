@@ -11,7 +11,7 @@ router = APIRouter()
 
 class RetrievingQueryRequest(BaseModel):
     vector_db_host: str
-    key: str
+    llm_api_key: str
     question: str
 
 
