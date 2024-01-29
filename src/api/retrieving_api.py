@@ -29,7 +29,7 @@ def get_results(request: RetrievingQueryMessage) -> RetrievingQueryResponse:
     logger.info(f"Retrieving query with request: {request}")
 
     try:
-        response = requests.post(f"{request.consumer_host}/retreive_query", json=request.package)
+        response = requests.post(f"{request.consumer_host}/retreive_query", data=request.package.model_dump_json())
         response.raise_for_status()
 
         return RetrievingQueryResponse(sql=response.json()["sql"])
